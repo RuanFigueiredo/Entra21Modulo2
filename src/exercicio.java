@@ -18,7 +18,16 @@ public class exercicio {
 
             soma += valor;
 
+            if (valor >=0)
+                qtdPos++;
+
+            if(valor<=0)
+                qtdNeg++;
+
         } while(valor !=0);
+
+        System.out.printf("Média %d \nQuantidade Positivo %d\n Quantidade negativo %d", soma/(qtdPos+qtdNeg),
+                qtdPos, qtdNeg);
 
     }
 }
