@@ -11,7 +11,7 @@ public class ContaBanco {
         c2.nome = "Arnold Shwaznegar";
         c2.numConta = 3;
 
-        System.out.println(c2.nome);
+        System.out.println("o nome do cliente é: " + c2.nome + "e o número da conta é: "+ c2.numConta);
 
     }
 }
