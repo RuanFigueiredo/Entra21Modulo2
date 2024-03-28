@@ -26,7 +26,11 @@ public class ContaBanco {
         c2.depositar(50);
         System.out.println(c2.getSaldo());
 
-        c2.transferir(c1,22);
+        if(c2.transferir(c1,100)==true){
+            System.out.println("transferência realizada");
+        }else {
+            System.out.println("saldo insuficiente para depósito");
+        }
 
         System.out.println("saldo de c2 após transferência: "+ c2.getSaldo());
         System.out.println("saldo de c1 após a transferência: " + c1.getSaldo());
