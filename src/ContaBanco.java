@@ -1,8 +1,9 @@
 public class ContaBanco {
     public static void main (String[] args){
 
-        Conta c1 = new Conta();
-        Conta c2 = new Conta();
+        //polimorfismo
+        Conta c1 = new ContaPoupanca();
+        Conta c2 = new ContaPagamentos();
 
 
         c1.nome = "Ruan";
@@ -11,29 +12,22 @@ public class ContaBanco {
         c2.nome = "Arnold Shwaznegar";
         c2.numConta = 3;
 
-        System.out.println("o nome do cliente é: " + c1.nome + " e o nº da sua conta é: "+ c1.numConta);
-        System.out.println(c1.getSaldo());
-
         c1.depositar(50);
-        System.out.println(c1.getSaldo());
-
-        c1.sacar(20);
-        System.out.println("após saque: "+c1.getSaldo());
-
-
-        System.out.println(c2.nome);
-        System.out.println(c2.getSaldo());
         c2.depositar(50);
-        System.out.println(c2.getSaldo());
 
-        if(c2.transferir(c1,100)==true){
-            System.out.println("transferência realizada");
-        }else {
-            System.out.println("saldo insuficiente para depósito");
-        }
+        System.out.println("saldo c1 é: R$"+ c1.getSaldo());
+        System.out.println("saldo c2 é: R$"+ c2.getSaldo());
 
-        System.out.println("saldo de c2 após transferência: "+ c2.getSaldo());
-        System.out.println("saldo de c1 após a transferência: " + c1.getSaldo());
+        // Aqui vai implementar o método sacar da classe filha
+        c1.sacar(20);
+        c2.sacar(20);
+        System.out.println("valor atualizado, saldo: R$ "+ c1.getSaldo());
+        System.out.println("valor atualizado, saldo: R$ "+ c2.getSaldo());
+
+
+
+
+
 
     }
 }
@@ -42,6 +36,8 @@ class Conta {
     public String nome;
     public int numConta;
     private double saldo;
+    protected double taxaSaque = 1.0;
+
 
     public boolean depositar(double valor){
         this.saldo += valor;
@@ -49,9 +45,9 @@ class Conta {
     }
 
     public boolean sacar (double valor){
-        if(valor <= this.saldo ){
+        if(valor + this.taxaSaque <= this.saldo ){
             //permite saque
-            this.saldo  = this.saldo -valor;
+            this.saldo  = this.saldo -valor - this.taxaSaque;
             return true;
         } else {
             // não permite saque
@@ -73,3 +69,22 @@ class Conta {
         }
     }
 }
+
+
+//herança
+class ContaPagamentos extends Conta {
+    public boolean sacar(double valor){
+        super.taxaSaque=2.0;
+        return super.sacar(valor);
+    }
+}
+
+class ContaPoupanca extends Conta {
+    public boolean sacar(double valor){
+        super.taxaSaque=0.50;
+        return super.sacar(valor);
+    }
+
+// Parabéns! VOCÊ VIU UM EXEMPLO PRÁTICO DE ABSTRAÇÃO.
+}
+
