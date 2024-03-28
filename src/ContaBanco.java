@@ -21,6 +21,15 @@ public class ContaBanco {
         System.out.println("após saque: "+c1.getSaldo());
 
 
+        System.out.println(c2.nome);
+        System.out.println(c2.getSaldo());
+        c2.depositar(50);
+        System.out.println(c2.getSaldo());
+
+        c2.transferir(c1,22);
+
+        System.out.println("saldo de c2 após transferência: "+ c2.getSaldo());
+        System.out.println("saldo de c1 após a transferência: " + c1.getSaldo());
 
     }
 }
@@ -47,6 +56,16 @@ class Conta {
     }
 
     public double getSaldo(){
+
         return this.saldo;
+    }
+
+    public boolean transferir(Conta contaDestino, double  valor){
+        if(this.sacar(valor)== true){
+            contaDestino.depositar(valor);
+            return true;
+        }else {
+            return false;
+        }
     }
 }
