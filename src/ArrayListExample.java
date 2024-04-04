@@ -48,7 +48,7 @@ public class ArrayListExample {
 
         System.out.println("FOR LOOP");
         for(String nome : Nomes){
-            System.out.println(nomeB);
+            System.out.println(nome);
         }
 
         System.out.println("MÉTODO FOR EACH");
